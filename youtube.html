@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>YouTube Clone</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', Arial;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            border-radius: 6px;
+        }
+        .header {
+            height: 60px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+            background-color: white;
+            border-radius: 10px;
+        }
+        .left-section, .right-section {
+            height: 80%;
+            display: flex;
+            align-items: center;
+            padding: 8px;
+        }
+        .left-section {
+            width: 400px;
+        }
+        .lines-icon{
+            height:40px;
+            margin-left: 0px;
+            margin-right: 5px;
+        }
+        .youtube-icon{
+           height:100px;
+           margin-top: 15px;
+           margin-left: 5px;
+
+        }
+        .middle-section {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 30px;
+            margin-right: 35px;      
+        }
+        .search-icon{
+            height: 40px;
+            padding: 8px;
+            width:70px;
+            color: white;
+            border: 1px solid #ddd;
+            border-top-right-radius:28px ;
+            border-bottom-right-radius:28px ;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .search-icon:hover {
+            background-color:rgb(217, 216, 216); 
+        }
+        .search-icon.active {
+            background-color: #000;
+            color: #fff;
+        }
+        .mic-icon{
+            height:35px;
+            width:50px;
+            border:none;
+            background-color: white;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            border-radius: 70px;
+        }
+        .search-img{
+            height:15px;
+            width:20px;
+        }
+        .mic-img{
+            height:25px;
+            width:30px;
+            background-image:white; 
+            border-radius: 50px;
+        }
+        .mic-icon:hover {
+            background-color: rgb(217, 216, 216);
+        }
+        .mic-icon.active {
+            background-color: #000;
+            color: #fff;
+        }
+        .right-section {
+            width: 550px;
+            margin-left: 0;
+        }
+        .create-icon{
+            width:30px;
+            margin-left: 350px;
+        }
+        .notification-icon{
+            width:30px;
+            margin-left: 15px;
+        }
+        .search-container {
+            display: flex;
+            align-items: center;
+            width: 80%;
+            height: 30px;
+        }
+        .search-bar {
+            flex: 2;
+            height: 80%;
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-top-left-radius: 28px;
+            border-bottom-left-radius: 28px;
+            width:300px;
+        }
+        .search-bar:focus {
+            outline: none;  
+            border-color: #666;
+        }
+        .profile-icon{
+            width:33px;
+            height:35px;
+            border-radius: 40px;
+            margin-left: 25px;
+            margin-top: 15px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #fff;
+            background-color: #fff;
+        }
+        .btn {
+            padding: 8px 16px;
+            margin: 0 4px;
+            background-color: lightgrey;
+            border: 1px solid #ccc8c8;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            color: black;
+            font-weight: 500;
+            font-size: 15px;
+        }
+        .btn:hover {
+            background-color: #f0f0f0;
+        }
+        .btn.active {
+            background-color: #000;
+            color: #fff;
+        }
+        .video-container {
+             display: flex;
+             flex-wrap: wrap;
+             justify-content: space-around;
+             padding:20px;
+        }
+        .video-preview{
+             width:400px;
+             margin:10px;
+             border-radius: 4px;
+             overflow: hidden;
+        }
+        .video-preview img {
+            width: 100%;
+            border-radius: 8px;
+            
+        }
+        .image-1,.image-4{
+            margin-left:40px;
+            
+        }
+        .image-3,.image-6{
+            margin-right: 20px;
+        }
+        .video-details {
+            display: flex;
+            padding: 8px;
+        }
+        .video-details img {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            margin-right: 8px;
+            margin-top: 8px;
+        }
+        .video-info {
+            flex: 1;
+        }
+        .video-title {
+            font-size: 14px;
+            font-weight: bold;
+            margin-top: 7px;
+        }
+        .video-author, .video-subtitle {
+            font-size: 14px;
+            color: #555;
+            margin: 3px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="left-section">
+            <img class="lines-icon"src="Images/lines icon.jpg">
+            <img class="youtube-icon"src="Images/youtube-icon.jpg">
+        </div>
+        <div class="middle-section">
+            <div class="search-container">
+                <input class="search-bar" type="text" placeholder="Search">
+                <button class="search-icon" >
+                    <img class="search-img" src="Images/search.gif">
+                    </button>
+                <button class="mic-icon">
+                    <img class="mic-img" onclick="setActive" src="Images/mic.jpg">
+                </button>
+            </div>
+        </div>
+        <div class="right-section">
+            <img class="create-icon" src="Images/create icon.jpg">
+            <img class="notification-icon" src="Images/notifications icon.jpg">
+            <img class="profile-icon" src="Images/Fam.jpeg">
+        </div>
+    </div>
+    <div class="button-container">
+        <button class="btn" onclick="setActive(this)">All</button>
+        <button class="btn" onclick="setActive(this)">Jabardasth</button>
+        <button class="btn" onclick="setActive(this)">Mixes</button>
+        <button class="btn" onclick="setActive(this)">Music</button>
+        <button class="btn" onclick="setActive(this)">Software Engineering</button>
+        <button class="btn" onclick="setActive(this)">Sudheer</button>
+        <button class="btn" onclick="setActive(this)">Job Interviews</button>
+        <button class="btn" onclick="setActive(this)">Song Performances</button>
+        <button class="btn" onclick="setActive(this)">Crafts</button>
+        <button class="btn" onclick="setActive(this)">Zee Cinemalu</button>
+    </div>
+    <div class="video-container">
+        <div class="video-preview">
+            <img class="image-1" src="Images/singer.jpg" alt="Video Thumbnail">
+            <div class="video-details">
+                <img class="profile-1" src="Images/profile-1.jpg" alt="Channel Profile Picture">
+                <div class="video-info">
+                    <p class="video-title">New Song Released from Pushpa-2 movie | Allu Arjun | Rashmika Mandanna</p>
+                    <p class="video-author">Rashmika Fan Girl</p>
+                    <p class="video-subtitle">64K views &#183; 8 months ago</p>
+                </div>
+            </div>
+        </div>
+        <div class="video-preview">
+            <img class="image-2" src="Images/Singer-2.jpg" alt="Video Thumbnail">
+            <div class="video-details">
+                <img class="profile-2" src="Images/profile-2.jpg" alt="Channel Profile Picture">
+                <div class="video-info">
+                    <p class="video-title">Ma Perati Jamchettu Song Performance | Saregamapa Championship | Every Sunday at 9pm | Zee Telugu</p>
+                    <p class="video-author">Zee Cinemalu</p>
+                    <p class="video-subtitle">116K views &#183; 3 months ago</p>
+                </div>
+            </div>
+        </div>
+        <div class="video-preview">
+            <img class="image-3" src="Images/image-3.jpg" alt="Video Thumbnail">
+            <div class="video-details">
+                <img class="profile-3" src="Images/profile-3.jpg" alt="Channel Profile Picture">
+                <div class="video-info">
+                    <p class="video-title">Sudheer & Rashmi Best Dance Performances | Dhee Championship | ETv Telugu</p>
+                    <p class="video-author">Mallemala ETv</p>
+                    <p class="video-subtitle">50K views &#183; 6 months ago</p>
+                </div>
+            </div>
+        </div>
+        <div class="video-preview">
+            <img class="image-4" src="Images/image-4.jpg" alt="Video Thumbnail">
+            <div class="video-details">
+                <img class="profile-4" src="Images/profile-4.jpg" alt="Channel Profile Picture">
+                <div class="video-info">
+                    <p class="video-title"><strong>Data Science & AI Course</strong></p>
+                    <p class="video-author">Learn how to use 15+ tools to solve real-world data problems from industry experts.</p>
+                    <p class="video-subtitle"><strong>Sponsored &#183;</strong> UpGrad Campus</p>
+                </div>
+            </div>
+        </div>
+        <div class="video-preview">
+            <img class="image-5" src="Images/image-5.jpg" alt="Video Thumbnail">
+            <div class="video-details">
+                <img class="profile-5" src="Images/profile-5.jpg" alt="Channel Profile Picture">
+                <div class="video-info">
+                    <p class="video-title">Vinava Manavi-Thrahimam 2</p>
+                    <p class="video-author">Swetha Mohan</p>
+                    <p class="video-subtitle">276K Views &#183; 1 month ago</p>
+                </div>
+            </div>
+        </div>
+        <div class="video-preview">
+            <img class="image-6" src="Images/image-6.jpg" alt="Video Thumbnail">
+            <div class="video-details">
+                <img class="profile-6" src="Images/profile-6.jpg" alt="Channel Profile Picture">
+                <div class="video-info">
+                    <p class="video-title">Prema Kanna Full Video Song-HD | Astram Movie</p>
+                    <p class="video-author">Melophile</p>
+                    <p class="video-subtitle">178M views &#183; 2 years ago</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function setActive(button) {
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+        }
+    </script>
+</body>
+</html>
